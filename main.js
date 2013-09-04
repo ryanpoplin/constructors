@@ -12,34 +12,17 @@ var InvestmentTerms = function ( initRate, initYears, initAmount ) {
     };
     this.getYearlyInterest = function () {
         var yearlyInterest = ( this.rate * this.amount ) / 12;
-        return parseFloat( yearlyInterest * 12 ).toFixed( 2 );
+        return parseFloat( (yearlyInterest) * 12 ).toFixed( 2 );
     };
     this.getMonthlyInterest = function () {
         var monthlyInterest = ( this.rate * this.amount ) / 1;
         return parseFloat( monthlyInterest / 12 ).toFixed( 2 );
     };
     this.getDoubleInterest = function () {
-        var doubleInterest = terms.getTotalInterest();
+        var doubleInterest = this.getTotalInterest();
         return doubleInterest * 2;
     };
 };
-
-var terms = new InvestmentTerms( 0.08, 10, 100000 );
-
-var months = terms.getMonths();
-console.log( months );
-
-var interest = terms.getTotalInterest();
-console.log( interest );
-
-yearlyInterest = terms.getYearlyInterest();
-console.log( yearlyInterest );
-
-monthlyInterest = terms.getMonthlyInterest();
-console.log( monthlyInterest );
-
-doubleInterest = terms.getDoubleInterest();
-console.log( doubleInterest );
 
 // constructor 2...
 
@@ -58,31 +41,14 @@ var Vehicle = function ( make, model ) {
         this.miles += miles;
         return this.miles + " miles are on this vehicle.";
     };
-    this.changeOil = function ( milesWhenServiced ) {
+    this.oilChangeMiles = function ( milesWhenServiced ) {
         this.lastOilChange = milesWhenServiced;
         return this.lastOilChange + " was the milage when last serviced.";
     };
-    this.needOilChange = function () {
+    this.milesSinceServiced = function () {
         return this.miles - this.lastOilChange + " miles have been driven since last service.";                        
     };
 };
-
-var whip = new Vehicle( "Ford", "F-150" );
-
-var whipBrand = whip.company();
-console.log( whipBrand );
-
-var whipModel = whip.vehicleModel();
-console.log( whipModel );
-
-var miles = whip.drive( 67700 );
-console.log( miles );
-
-var oilChange = whip.changeOil( 65000 );
-console.log( oilChange );
-
-var newOil = whip.needOilChange();
-console.log( newOil );
 
 // constructor 3...
 
@@ -106,9 +72,3 @@ var Netflix = function ( title, year, genre ) {
         return "If " + this.title + " " + this.year + " " + this.genre + " is rated with five stars, you better watch it!";
     };
 };
-
-var clips = new Netflix( "Half Baked", 1998, "Comedy" );
-
-var rating = clips.starFive();
-console.log( rating );
-
